@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pricing - RedTheme - IT Website Template</title>
+  <title>SIMVAI</title>
   <meta content="" name="RedTheme - IT Website Template">
   <meta name="description"
     content="RedTheme - IT Website Template - IT Solutions & Business Services Multipurpose Responsive HTML5 Bootstrap5 Website Template">
@@ -45,13 +45,13 @@
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/images/logo.png" alt="logo">
+        <img src="assets/images/simvai/SIMVAI.png" alt="logo">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="">Home</a></li>
-          <li><a href="about.html" class="">About Us</a></li>
-          <li class="dropdown"><a href="services.html"><span>Services</span> <i
+          <li><a href="pricing.html" class="">Pricing</a></li>
+          <!-- <li class="dropdown"><a href="services.html"><span>Services</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="services.html">Services</a></li>
@@ -73,10 +73,10 @@
               <li><a href="blogs.html">Blogs Grid</a></li>
               <li><a href="single-blog.html">Blog Details</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </nav><!-- .navbar -->
-      <a href="contact.html" class="default-theme-btn-one">Contact Us <span></span></a>
+      <a href="/auth/google" class="default-theme-btn-one" id="login-btn">Login <span></span></a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -112,7 +112,7 @@
       <div class="container-fluid">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-4">
+            <!-- <div class="col-sm-6 col-md-6 col-lg-4">
               <div class="card text-center">
                 <div class="price">
                   <h4>Starter<span class="price-tag"><sup>$</sup>25</span></h4>
@@ -153,28 +153,30 @@
                 </div>
                 <a href="#" class="default-theme-btn-two">Order Now<span></span></a>
               </div>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-4">
-              <div class="card text-center">
-                <div class="price">
-                  <h4>Premium<span class="price-tag"><sup>$</sup>99</span></h4>
+            </div> -->
+            <div class="pricing section d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6">
+                    <div class="card text-center p-4 shadow" style="border-radius: 16px;">
+                      <div class="price mb-3">
+                        <h4>Запись на конференцию <span class="price-tag"><sup>$</sup>99</span></h4>
+                      </div>
+                      <ul class="list-unstyled mb-4">
+                        <li><i class="bi bi-check-circle"></i> Участие в конференции</li>
+                        <li><i class="bi bi-check-circle"></i> Сертификат</li>
+                        <li><i class="bi bi-check-circle"></i> Онлайн трансляция</li>
+                      </ul>
+                      <div id="paypal-button-container" class="mt-4"></div>
+                      <div id="login-message" style="color: red;"></div>
+
+                    </div>
+                  </div>
                 </div>
-                <div class="option">
-                  <ul>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Unlimited GB Space</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> 30 Domain Names</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free SSL</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Daily Backup</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free Templates</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free Email</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> 10 Databases</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Unlimited Email Address</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Live Support</li>
-                  </ul>
-                </div>
-                <a href="#" class="default-theme-btn-two">Order Now<span></span></a>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
@@ -192,7 +194,7 @@
             <div class="footer-widget">
               <div class="footer-logo">
                 <a href="#" class="logo d-flex align-items-center">
-                  <img src="assets/images/logo.png" alt="logo">
+                  <img src="assets/images/simvai/SIMVAI.png" alt="logo">
                 </a>
               </div>
               <div class="footer-text">
@@ -302,6 +304,52 @@
 
   <!-- Template Main JS File -->
   <script src="assets/javascripts/main.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('/user')
+        .then(res => res.json())
+        .then(data => {
+          const loginBtn = document.getElementById('login-btn');
+          if (data.loggedIn && loginBtn) {
+            loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
+                                  <a href="/logout" class="default-theme-btn-one">Logout</a>`;
+          }
+        });
+    });
+  </script>
+  <!-- PayPal SDK -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AdUCBuT5I3f8mVfMOpESn2fgl5QvEQ6GZ8xquHL-BPErcknGA8-adUyp-GlCxpFK8tywbsNmea6y_dco"></script>
+
+  <script>
+    fetch('/user')
+      .then(res => res.json())
+      .then(data => {
+        if (data.loggedIn) {
+          // Пользователь залогинен — показываем кнопку
+          document.getElementById('paypal-button-container').style.display = 'block';
+
+          paypal.Buttons({
+            createOrder: function () {
+              return fetch('/api/paypal/order', {
+                method: 'POST'
+              }).then(res => res.json()).then(order => order.id);
+            },
+            onApprove: function (data) {
+              return fetch(`/api/paypal/capture/${data.orderID}`, {
+                method: 'POST'
+              }).then(res => res.json()).then(details => {
+                alert('✅ Оплата прошла: ' + details.payer.name.given_name);
+              });
+            }
+          }).render('#paypal-button-container');
+
+        } else {
+          // Не залогинен — просим войти
+          document.getElementById('login-message').textContent = 'Пожалуйста, войдите в аккаунт, чтобы оплатить.';
+        }
+      });
+  </script>
 
 </body>
 

@@ -8,13 +8,13 @@
     "prod": "node ./build/index.js",
     "pm2": "pm2 start npm --name simvai -- run prod",
     "migrate": "prisma migrate dev --schema=prisma/schema.prisma"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@prisma/client": "^6.7.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",

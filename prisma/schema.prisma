@@ -144,3 +144,22 @@ model test {
   updatedAt DateTime @updatedAt
   email      String  @unique
 }
+
+model UserSimvai {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String?
+  createdAt     DateTime       @default(now())
+  transactions  Transaction[]  @relation("UserTransactions")
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  userId      String
+  amount      Float
+  currency    String   @default("USD")
+  status      String   // e.g., "paid", "pending", "failed"
+  createdAt   DateTime @default(now())
+
+  user        UserSimvai     @relation("UserTransactions", fields: [userId], references: [id])
+}

@@ -48,12 +48,12 @@
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- <img src="assets/images/logo.png" alt="logo"> -->
+        <img src="assets/images/simvai/SIMVAI.png" alt="logo">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="">Home</a></li>
-          <li><a href="about.html" class="">About Us</a></li>
+          <li><a href="pricing.html" class="">Pricing</a></li>
           <!-- <li class="dropdown"><a href="services.html"><span>Services</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -79,7 +79,7 @@
           </li> -->
         </ul>
       </nav><!-- .navbar -->
-      <a href="contact.html" class="d-none d-md-flex default-theme-btn-one">Contact Us <span></span></a>
+      <a href="/auth/google" class="default-theme-btn-one" id="login-btn">Login <span></span></a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -639,7 +639,8 @@
                 </p>
               </div>
             </div>
-            <p class="text-4-line">To host a website on any hosting provider, you need to follow these steps: 1 Choose a hosting provider and sign up for a hosting plan. 2 Register a domain name </p>
+            <p class="text-4-line">To host a website on any hosting provider, you need to follow these steps: 1 Choose a
+              hosting provider and sign up for a hosting plan. 2 Register a domain name </p>
           </article>
         </div><!-- End post list item -->
 
@@ -660,7 +661,9 @@
                 </p>
               </div>
             </div>
-            <p class="text-4-line">Google AdWords add-ons are third-party tools and services that can extend the functionality of the AdWords platform. They can help you with tasks such as managing your campaigns, tracking your performance,</p>
+            <p class="text-4-line">Google AdWords add-ons are third-party tools and services that can extend the
+              functionality of the AdWords platform. They can help you with tasks such as managing your campaigns,
+              tracking your performance,</p>
           </article>
         </div><!-- End post list item -->
 
@@ -681,7 +684,10 @@
                 </p>
               </div>
             </div>
-            <p class="text-4-line">Digital marketing is the use of digital channels to promote or market products or services to consumers and businesses. It includes a wide range of activities, such as search engine optimization (SEO), pay-per-click (PPC) advertising, social media marketing, content marketing, and email marketing.</p>
+            <p class="text-4-line">Digital marketing is the use of digital channels to promote or market products or
+              services to consumers and businesses. It includes a wide range of activities, such as search engine
+              optimization (SEO), pay-per-click (PPC) advertising, social media marketing, content marketing, and email
+              marketing.</p>
           </article>
         </div><!-- End post list item -->
 
@@ -743,7 +749,7 @@
             <div class="footer-widget">
               <div class="footer-logo">
                 <a href="#" class="logo d-flex align-items-center">
-                  <img src="assets/images/logo.png" alt="logo">
+                  <img src="assets/images/simvai/SIMVAI.png" alt="logo">
                 </a>
               </div>
               <div class="footer-text">
@@ -853,7 +859,19 @@
 
   <!-- Template Main JS File -->
   <script src="assets/javascripts/main.js"></script>
-
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('/user')
+        .then(res => res.json())
+        .then(data => {
+          const loginBtn = document.getElementById('login-btn');
+          if (data.loggedIn && loginBtn) {
+            loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
+                                  <a href="/logout" class="default-theme-btn-one">Logout</a>`;
+          }
+        });
+    });
+  </script>
 </body>
 
 </html>
