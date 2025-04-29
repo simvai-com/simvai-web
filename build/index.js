@@ -1,15 +1,28 @@
 const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
 const path = require('path');
-const app = express();
+require('dotenv').config();
 
+const authRoutes = require('./auth');
+
+const app = express();
 const PORT = process.env.PORT || 5200;
 
-const rootDir = path.join(__dirname, '..');
-const distPath = path.join(rootDir, 'dist');
-const assetsPath = path.join(rootDir, 'assets');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(express.static(distPath));            // для index.html и остальных
-app.use('/assets', express.static(assetsPath)); // отдельно обслуживаем assets
+app.use(authRoutes);
+
+// Serve static files
+const rootDir = path.join(__dirname, '..');
+app.use(express.static(path.join(rootDir, 'dist')));
+app.use('/assets', express.static(path.join(rootDir, 'assets')));
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);
