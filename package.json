@@ -1,0 +1,21 @@
+{
+  "name": "simvai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "prod": "node ./build/index.js",
+    "pm2": "pm2 start npm --name simvai -- run prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.3"
+  }
+}
