@@ -6,20 +6,27 @@
     "dev": "vite",
     "build": "vite build",
     "prod": "node ./build/index.js",
-    "pm2": "pm2 start npm --name simvai -- run prod"
+    "pm2": "pm2 start npm --name simvai -- run prod",
+    "migrate": "prisma migrate dev --schema=prisma/schema.prisma"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.7.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "prisma": "^6.7.0"
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vite": "^6.3.3"
   }
 }

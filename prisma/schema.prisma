@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// TRUNCATE TABLE "Currencies" RESTART IDENTITY
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = []
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("POSTGRESQL_DB_URL")
+  relationMode = "foreignKeys"
+}
+
+model User {
+  userId    Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  email      String  @unique
+  telegramId String?
+  password   String /// @encrypted
+  secret     String? /// @encrypted
+}
+
+model Deal {
+  dealId    Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  bot   String
+  code  String
+  stock Stock  @relation(fields: [code], references: [codeTS])
+
+  hash        String   @unique
+  dealDate    DateTime
+  timeLn      Int
+  timeSh      Int
+  dateLn      Int
+  dateSh      Int
+  size        Int
+  currentSize Int
+  direction   Int
+  enter       Float
+  stop        Float
+  pnlpos      Float
+  riskpos     Float
+  isOpen      Boolean
+
+  @@index([hash])
+  @@index([bot])
+  @@index([code])
+  @@index([isOpen])
+}
+
+model DealLog {
+  dealLogId Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  bot  String
+  code String
+
+  hash      String
+  dealDate  DateTime
+  timeLn    Int
+  timeSh    Int
+  dateLn    Int
+  dateSh    Int
+  size      Int
+  direction Int
+  enter     Float
+  stop      Float
+  pnlpos    Float
+  riskpos   Float
+
+  @@index([hash])
+  @@index([bot])
+  @@index([code])
+}
+
+model Strategy {
+  strategyId Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now()) @db.Timestamptz()
+  updatedAt  DateTime @updatedAt @db.Timestamptz()
+
+  name     String
+  code     String   @unique
+  exchange Exchange @default(crypto)
+
+  stocks   Stock[]
+  tokens   Tokens[]
+}
+
+model Bot {
+  botId     Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  name     String
+  code     String   @unique
+  exchange Exchange @default(crypto)
+}
+
+model Stock {
+  stockId   Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  code        String   @unique
+  codeTS      String   @unique
+  codeFut     String?
+  isAvailable Boolean
+  lvg         Float
+  lotPrec     Int
+  minLot      Float
+  exchange    Exchange @default(crypto)
+
+  deal Deal[]
+  strategies Strategy[]
+}
+
+model Tokens {
+  tokenId   Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  token  String   @unique
+  dateTo DateTime
+  strategies Strategy[]
+}
+
+enum Exchange {
+  moex
+  futures
+  crypto
+}
+
+
+model test {
+  userId    Int   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email      String  @unique
+}
