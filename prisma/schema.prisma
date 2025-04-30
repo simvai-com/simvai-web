@@ -154,7 +154,7 @@ model UserSimvai {
 }
 
 model Transaction {
-  id          String   @id @default(uuid())
+  id          String   @id @default(uuid()) 
   userId      String
   amount      Float
   currency    String   @default("USD")
