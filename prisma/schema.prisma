@@ -163,3 +163,24 @@ model Transaction {
 
   user        UserSimvai     @relation("UserTransactions", fields: [userId], references: [id])
 }
+
+model AdminUser {
+  id         String      @id @default(uuid())
+  email      String      @unique
+  password   String
+  createdAt  DateTime    @default(now())
+
+  promoCodes PromoCode[]
+}
+
+model PromoCode {
+  id        String     @id @default(uuid())
+  code      String     @unique
+  discount  Int
+  forWho    String?
+  createdAt DateTime   @default(now())
+
+  adminId   String
+  admin     AdminUser  @relation(fields: [adminId], references: [id])
+}
+

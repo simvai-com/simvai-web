@@ -13,8 +13,8 @@
   <meta content="" name="ZRTHEMES">
 
   <!-- Favicons -->
-  <link href="assets/images/favicon.png" rel="icon">
-  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +33,7 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="assets/stylesheets/styles.css" rel="stylesheet">
+  <link href="assets/stylesheets/custom-style.css" rel="stylesheet">
 
 </head>
 
@@ -45,7 +46,7 @@
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/images/simvai/SIMVAI.png" alt="logo">
+        <img src="assets/images/simvai/simvai-full-logo.png" alt="logo" class="img-fluid" style="max-height: 80px;">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
@@ -111,245 +112,351 @@
     <div class="pricing section">
       <div class="container-fluid">
         <div class="container">
-          <div class="row">
-            <!-- <div class="col-sm-6 col-md-6 col-lg-4">
-              <div class="card text-center">
-                <div class="price">
-                  <h4>Starter<span class="price-tag"><sup>$</sup>25</span></h4>
-                </div>
-                <div class="option">
-                  <ul>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Unlimited GB Space</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> 30 Domain Names</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free SSL</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Daily Backup</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free Templates</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> Free Email</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> 10 Databases</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> Unlimited Email Address</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> Live Support</li>
-                  </ul>
-                </div>
-                <a href="#" class="default-theme-btn-two">Order Now<span></span></a>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-4">
-              <div class="card text-center">
-                <div class="price">
-                  <h4>Standard<span class="price-tag"><sup>$</sup>75</span></h4>
-                </div>
-                <div class="option">
-                  <ul>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Unlimited GB Space</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> 30 Domain Names</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free SSL</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Daily Backup</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free Templates</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> Free Email</li>
-                    <li><i class="bi bi-check-circle" aria-hidden="true"></i> 10 Databases</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> Unlimited Email Address</li>
-                    <li class="disabled"><i class="bi bi-x-circle" aria-hidden="true"></i> Live Support</li>
-                  </ul>
-                </div>
-                <a href="#" class="default-theme-btn-two">Order Now<span></span></a>
-              </div>
-            </div> -->
-            <div class="pricing section d-flex justify-content-center align-items-center" style="min-height: 60vh;">
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-md-10 col-lg-6">
-                    <div class="card text-center p-4 shadow" style="border-radius: 16px;">
-                      <div class="price mb-3">
-                        <h4>Запись на конференцию <span class="price-tag"><sup>$</sup>99</span></h4>
-                      </div>
-                      <ul class="list-unstyled mb-4">
-                        <li><i class="bi bi-check-circle"></i> Участие в конференции</li>
-                        <li><i class="bi bi-check-circle"></i> Сертификат</li>
-                        <li><i class="bi bi-check-circle"></i> Онлайн трансляция</li>
-                      </ul>
-                      <div id="paypal-button-container" class="mt-4"></div>
-                      <div id="login-message" style="color: red;"></div>
+          <div class="row justify-content-center">
 
+            <div class="col-sm-6 col-md-6 col-lg-4">
+              <div class="card text-center h-100 position-relative">
+
+                <!-- Заголовок -->
+                <div class="price">
+                  <h4>Registration</h4>
+
+                  <!-- 💲 Цена и скидка -->
+                  <div class="price-box">
+                    <!-- <span class="price-label">Временно:</span> -->
+                    <span class="price-current">$30</span>
+                    <span class="price-old">$50</span>
+                  </div>
+                  
+                </div>
+
+                <!-- ⏳ Таймер -->
+                <div class="pulse-timer" id="pulse-timer">
+                  ⏳ <span id="pulse-time">30д 05:33:45</span>
+                </div>
+
+                <div class="option d-flex flex-column flex-grow-1">
+                  <ul class="mb-4">
+                    <li><i class="bi bi-check-circle"></i> Welcome drink</li>
+                    <li><i class="bi bi-check-circle"></i> Attendance all round tables discussions</li>
+                    <li><i class="bi bi-check-circle"></i> Networking</li>
+                  </ul>
+
+                  <button class="btn btn-danger mt-auto open-modal-btn" data-price="30">Purchase</button>
+
+                  <!-- 🎉 Успешная оплата -->
+                  <div id="login-message" style="color: red;"></div>
+                  <div id="payment-success-message" style="display: none; text-align: center; margin-top: 30px;">
+                    <div style="background: #D80027; color: white; padding: 20px; border-radius: 10px;">
+                      <h3>✅ Оплата прошла успешно!</h3>
+                      <p>Спасибо за регистрацию на конференцию SIMVAI.</p>
+                      <a href="/" style="color: white; text-decoration: underline;">Вернуться на главную</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+            <div class="col-sm-6 col-md-6 col-lg-4">
+              <div class="card text-center h-100 position-relative">
 
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  End Pricing Section  -->
-  </div>
-  <!-- Page Main -->
+                <!-- Заголовок -->
+                <div class="price">
+                  <h4>Registration</h4>
 
-  <!--  Footer  -->
-  <footer id="footer" class="footer-section">
-    <div class="container">
-      <div class="footer-content pb-5">
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 mb-50">
-            <div class="footer-widget">
-              <div class="footer-logo">
-                <a href="#" class="logo d-flex align-items-center">
-                  <img src="assets/images/simvai/SIMVAI.png" alt="logo">
-                </a>
-              </div>
-              <div class="footer-text">
-                <p>At RedTheme we are passionate about providing businesses with the IT solutions they need to succeed
-                  in today's competitive marketplace.</p>
-              </div>
-              <div class="footer-social-icon">
-                <span>Follow us</span>
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
+                  <!-- 💲 Цена и скидка -->
+                  <div class="price-box">
+                    <!-- <span class="price-label">Временно:</span> -->
+                    <span class="price-current">$75</span>
+                  </div>
+                  
+                </div>
+                <div class="option d-flex flex-column flex-grow-1">
+                  <ul class="mb-4">
+                    <li><i class="bi bi-check-circle"></i> Welcome drink</li>
+                    <li><i class="bi bi-check-circle"></i> Attendance all round tables discussions</li>
+                    <li><i class="bi bi-check-circle"></i> Networking</li>
+                    <li><i class="bi bi-check-circle"></i> Face to face meetings with top speakers (Please book your
+                      time with organizers)</li>
 
-          <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
-            <div class="service-widget footer-widget">
-              <div class="footer-widget-heading">
-                <h3>Services</h3>
+
+                  </ul>
+                  <button class="btn btn-danger mt-auto open-modal-btn" data-price="75">Purchase</button>
+
+
+
+                  <!-- <div id="paypal-button-container" class="mt-4"></div> -->
+                  <div id="login-message" style="color: red;"></div>
+                  <div id="payment-success-message" style="display: none; text-align: center; margin-top: 30px;">
+                    <div style="background: #D80027; color: white; padding: 20px; border-radius: 10px;">
+                      <h3>✅ Оплата прошла успешно!</h3>
+                      <p>Спасибо за регистрацию на конференцию SIMVAI.</p>
+                      <a href="/" style="color: white; text-decoration: underline;">Вернуться на главную</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <ul class="list">
-                <li><a href="single-service.html">Web Design</a></li>
-                <li><a href="single-service.html">App Developemnt</a></li>
-                <li><a href="single-service.html">Cloud Services</a></li>
-                <li><a href="single-service.html">Domain And Hosting</a></li>
-                <li><a href="single-service.html">Seo Optimization</a></li>
-                <li><a href="single-service.html">Social Media</a></li>
-                <li><a href="single-service.html">Data Secure</a></li>
-                <li><a href="single-service.html">Web Hosting</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
-            <div class="service-widget footer-widget">
-              <div class="footer-widget-heading">
-                <h3>Information</h3>
-              </div>
-              <ul class="list">
-                <li><a href="about.html">About</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="single-blog.html">Single Blog</a></li>
-                <li><a href="page.html">Terms &amp; Conditions</a></li>
-                <li><a href="page.html">Sample Page</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-            <div class="contact-widget footer-widget mb-25">
-              <div class="footer-widget-heading">
-                <h3>Contacts</h3>
-              </div>
-              <div class="footer-text">
-                <p><i class="bi bi-geo-alt-fill mr-15"></i> 101 West Town , PBO 12345, United States</p>
-                <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +1 1234 56 789</p>
-                <p><i class="bi bi-envelope-fill mr-15"></i> contact@example.com</p>
-              </div>
-            </div>
-            <div class="footer-widget">
-              <div class="footer-widget-heading">
-                <h3>Newsletter</h3>
-              </div>
-              <div class="footer-text mb-25">
-                <p>Don't miss to subscribe to our new feeds, kindly fill the form below.</p>
-              </div>
-              <div class="subscribe-form">
-                <form action="#">
-                  <input type="text" placeholder="Email Address">
-                  <button><i class="bi bi-telegram"></i></button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-12 col-lg-12 text-center">
-            <div class="copyright-text">
-              <p>RedTheme<span>.</span> © 2024 - Designed by <a
-                  href="https://www.templatemonster.com/authors/zrthemes/">ZRTHEMES</a></p>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="purchaseModalLabel">Confirm Your Purchase</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+              <p>Вы уверены, что хотите приобрести билет за <strong id="modal-price">$0</strong>?</p>
+              <div id="modal-paypal-button-container"></div>
+              <div id="modal-message" class="text-success mt-3" style="display: none;">✅ Оплата прошла успешно!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--  End Pricing Section  -->
     </div>
-  </footer>
-  <!-- End Footer -->
+    <!-- Page Main -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center active">
-    <i class="bi bi-arrow-up-short"></i>
-  </a>
+    <!--  Footer  -->
+    <footer id="footer" class="footer-section">
+      <div class="container">
+        <div class="footer-content pb-5">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 mb-50">
+              <div class="footer-widget">
+                <div class="footer-logo">
+                  <a href="#" class="logo d-flex align-items-center">
+                    <img src="assets/images/simvai/SIMVAI.png" alt="logo">
+                  </a>
+                </div>
+                <div class="footer-text">
+                  <p>At RedTheme we are passionate about providing businesses with the IT solutions they need to succeed
+                    in today's competitive marketplace.</p>
+                </div>
+                <div class="footer-social-icon">
+                  <span>Follow us</span>
+                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/javascripts/jquery.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/javascripts/plugins.js"></script>
-  <script src="assets/javascripts/purecounter_vanilla.js"></script>
-  <script src="assets/javascripts/validator.min.js"></script>
-  <script src="assets/javascripts/contactform.js"></script>
-  <script src="assets/javascripts/particles.min.js"></script>
-  <script src="assets/javascripts/script.js"></script>
+            <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+              <div class="service-widget footer-widget">
+                <div class="footer-widget-heading">
+                  <h3>Services</h3>
+                </div>
+                <ul class="list">
+                  <li><a href="single-service.html">Web Design</a></li>
+                  <li><a href="single-service.html">App Developemnt</a></li>
+                  <li><a href="single-service.html">Cloud Services</a></li>
+                  <li><a href="single-service.html">Domain And Hosting</a></li>
+                  <li><a href="single-service.html">Seo Optimization</a></li>
+                  <li><a href="single-service.html">Social Media</a></li>
+                  <li><a href="single-service.html">Data Secure</a></li>
+                  <li><a href="single-service.html">Web Hosting</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+              <div class="service-widget footer-widget">
+                <div class="footer-widget-heading">
+                  <h3>Information</h3>
+                </div>
+                <ul class="list">
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="pricing.html">Pricing</a></li>
+                  <li><a href="faqs.html">FAQs</a></li>
+                  <li><a href="team.html">Team</a></li>
+                  <li><a href="blogs.html">Blogs</a></li>
+                  <li><a href="single-blog.html">Single Blog</a></li>
+                  <li><a href="page.html">Terms &amp; Conditions</a></li>
+                  <li><a href="page.html">Sample Page</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+              <div class="contact-widget footer-widget mb-25">
+                <div class="footer-widget-heading">
+                  <h3>Contacts</h3>
+                </div>
+                <div class="footer-text">
+                  <p><i class="bi bi-geo-alt-fill mr-15"></i> Limassol, Cyprus</p>
+                  <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +1 1234 56 789</p>
+                  <p><i class="bi bi-envelope-fill mr-15"></i> simvai.cy@gmail.com</p>
+                </div>
+              </div>
+              <div class="footer-widget">
+                <div class="footer-widget-heading">
+                  <h3>Newsletter</h3>
+                </div>
+                <div class="footer-text mb-25">
+                  <p>Don't miss to subscribe to our new feeds, kindly fill the form below.</p>
+                </div>
+                <div class="subscribe-form">
+                  <form action="#">
+                    <input type="text" placeholder="Email Address">
+                    <button><i class="bi bi-telegram"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 text-center">
+              <div class="copyright-text">
+                <p>RedTheme<span>.</span> © 2024 - Designed by <a
+                    href="https://www.templatemonster.com/authors/zrthemes/">ZRTHEMES</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
 
-  <!-- Template Main JS File -->
-  <script src="assets/javascripts/main.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      fetch('/user')
-        .then(res => res.json())
-        .then(data => {
-          const loginBtn = document.getElementById('login-btn');
-          if (data.loggedIn && loginBtn) {
-            loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center active">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/javascripts/jquery.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/javascripts/plugins.js"></script>
+    <script src="assets/javascripts/purecounter_vanilla.js"></script>
+    <script src="assets/javascripts/validator.min.js"></script>
+    <script src="assets/javascripts/contactform.js"></script>
+    <script src="assets/javascripts/particles.min.js"></script>
+    <script src="assets/javascripts/script.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/javascripts/main.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        fetch('/user')
+          .then(res => res.json())
+          .then(data => {
+            const loginBtn = document.getElementById('login-btn');
+            if (data.loggedIn && loginBtn) {
+              loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
                                   <a href="/logout" class="default-theme-btn-one">Logout</a>`;
-          }
-        });
-    });
-  </script>
-  <!-- PayPal SDK -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AdUCBuT5I3f8mVfMOpESn2fgl5QvEQ6GZ8xquHL-BPErcknGA8-adUyp-GlCxpFK8tywbsNmea6y_dco"></script>
-
-  <script>
-    fetch('/user')
-      .then(res => res.json())
-      .then(data => {
-        if (data.loggedIn) {
-          // Пользователь залогинен — показываем кнопку
-          document.getElementById('paypal-button-container').style.display = 'block';
-
-          paypal.Buttons({
-            createOrder: function () {
-              return fetch('/api/paypal/order', {
-                method: 'POST'
-              }).then(res => res.json()).then(order => order.id);
-            },
-            onApprove: function (data) {
-              return fetch(`/api/paypal/capture/${data.orderID}`, {
-                method: 'POST'
-              }).then(res => res.json()).then(details => {
-                alert('✅ Оплата прошла: ' + details.payer.name.given_name);
-              });
             }
-          }).render('#paypal-button-container');
+          });
+      });
+    </script>
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=AdUCBuT5I3f8mVfMOpESn2fgl5QvEQ6GZ8xquHL-BPErcknGA8-adUyp-GlCxpFK8tywbsNmea6y_dco"></script>
 
-        } else {
-          // Не залогинен — просим войти
-          document.getElementById('login-message').textContent = 'Пожалуйста, войдите в аккаунт, чтобы оплатить.';
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Инициализируем модалку
+        const modalEl = document.getElementById('purchaseModal');
+        const priceText = document.getElementById('modal-price');
+        const paypalContainer = document.getElementById('modal-paypal-button-container');
+        const successMsg = document.getElementById('modal-message');
+        let modal = new bootstrap.Modal(modalEl);
+
+
+        // Вешаем обработчики на кнопки
+        document.querySelectorAll('.open-modal-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const price = btn.getAttribute('data-price');
+            priceText.textContent = `$${price}`;
+            paypalContainer.innerHTML = '';
+            if (successMsg) successMsg.style.display = 'none';
+
+            // Показываем модалку
+            modal.show();
+
+            // Рендерим PayPal после отображения модалки
+            setTimeout(() => {
+              if (paypal && paypal.Buttons) {
+                paypal.Buttons({
+                  createOrder: function () {
+                    return fetch('/api/paypal/order', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ price })
+                    }).then(res => res.json()).then(order => order.id);
+                  },
+                  onApprove: function (data) {
+                    return fetch(`/api/paypal/capture/${data.orderID}`, {
+                      method: 'POST'
+                    }).then(res => res.json()).then(details => {
+                      if (successMsg) successMsg.style.display = 'block';
+                    });
+                  }
+                }).render('#modal-paypal-button-container');
+              } else {
+                console.error('⚠️ PayPal SDK not loaded or not available');
+              }
+            }, 200); // подождать чтобы DOM успел показать модалку
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const now = new Date();
+        const priceIncreaseDate = new Date("2025-06-01T00:00:00");
+
+        let price = now >= priceIncreaseDate ? 50 : 30;
+
+        const priceElements = document.querySelectorAll(".price-value");
+        priceElements.forEach(el => {
+          el.textContent = price;
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const faceToFacePrice = 75;
+
+        const priceEl = document.getElementById("face-to-face-price");
+        if (priceEl) {
+          priceEl.textContent = faceToFacePrice;
         }
       });
-  </script>
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const deadline = new Date("2025-06-01T00:00:00").getTime();
+        const label = document.getElementById("pulse-time");
+        const box = document.getElementById("pulse-timer");
+
+        function updatePulseTimer() {
+          const now = Date.now();
+          const left = deadline - now;
+
+          if (left <= 0) {
+            label.textContent = "⛔ Время вышло";
+            box.style.backgroundColor = "#eee";
+            box.style.color = "#666";
+            box.style.animation = "none";
+            return;
+          }
+
+          const days = Math.floor(left / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((left % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((left % (1000 * 60)) / 1000);
+
+          label.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updatePulseTimer();
+        setInterval(updatePulseTimer, 1000);
+
+      });
+    </script>
 
 </body>
 

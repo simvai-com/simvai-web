@@ -1,6 +1,6 @@
+const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const express = require('express');
 const prisma = require('../lib/prisma.cjs');
 require('dotenv').config();
 
@@ -15,41 +15,48 @@ passport.use(new GoogleStrategy({
     const email = profile.emails[0].value;
     const name = profile.displayName;
 
-    // Добавляем пользователя в БД, если его ещё нет
-    await prisma.userSimvai.upsert({
+    // Сохраняем или находим пользователя
+    const user = await prisma.userSimvai.upsert({
       where: { email },
-      update: {}, // ничего не обновляем
-      create: {
-        email,
-        name,
-      }
+      update: {},
+      create: { email, name }
     });
 
-    return done(null, profile);
+    done(null, user); // передаём объект в сессию
   } catch (err) {
     console.error('Ошибка при upsert пользователя:', err);
-    return done(err);
+    done(err);
   }
 }));
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((obj, done) => done(null, obj));
+passport.serializeUser((user, done) => {
+  done(null, user.email); // сохраняем только email
+});
 
-// Google Auth start
+passport.deserializeUser(async (email, done) => {
+  try {
+    const user = await prisma.userSimvai.findUnique({ where: { email } });
+    done(null, user); // будет доступен как req.user
+  } catch (err) {
+    done(err);
+  }
+});
+
+// 🔐 Старт авторизации
 router.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email'],
-  prompt: 'select_account' // ← заставит Google показать выбор аккаунта
+  prompt: 'select_account'
 }));
 
-// Callback
+// 🔁 Callback
 router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('/'); // можно перенаправить куда нужно
+    res.redirect('/'); // после логина — на главную
   }
 );
 
-// Logout
+// 🚪 Logout
 router.get('/logout', (req, res) => {
   req.logout(() => {
     res.redirect('/');

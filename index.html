@@ -7,14 +7,13 @@
 
   <title>SIMVAI</title>
   <meta content="" name="SIMVAI">
-  <meta name="description"
-    content="SIMVAI">
+  <meta name="description" content="SIMVAI">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta content="" name="ZRTHEMES">
 
   <!-- Favicons -->
-  <link href="assets/images/favicon.png" rel="icon">
-  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,8 +46,8 @@
   <!-- Start Header -->
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/images/simvai/SIMVAI.png" alt="logo">
+      <a href="index.html" class=" d-flex align-items-center">
+        <img src="assets/images/simvai/simvai-full-logo.png" alt="logo" class="img-fluid" style="max-height: 80px;">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
@@ -739,7 +738,100 @@
     </div>
   </div>
   <!-- End Clients Section -->
-
+  <!-- Start Contact Section -->
+  <div id="contact" class="contact-section section">
+    <div class="section-header">
+      <h2>Contact Us</h2>
+      <p>We're always happy to hear from you! </p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12" data-aos="fade-right">
+          <div class="contact-information-box-3">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="single-contact-info-box">
+                  <div class="contact-info">
+                    <h6>Address:</h6>
+                    <p>11 West Town</p>
+                    <p>PBo 12345, United States</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="single-contact-info-box">
+                  <div class="contact-info">
+                    <h6>Phone:</h6>
+                    <p>+1 1234 56 789</p>
+                    <p>+1 1234 56 780</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="single-contact-info-box">
+                  <div class="contact-info">
+                    <h6>Email:</h6>
+                    <p>info@example.com</p>
+                    <p>email@example.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-12" data-aos="fade-left">
+          <div class="contact-form-box contact-form contact-form-3">
+            <div class="form-container-box">
+              <form class="contact-form form" id="ajax-contact" method="post" action="assets/phpscripts/contact.php">
+                <div class="controls">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-input-box">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name*"
+                          required="required" data-error="Name is required.">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group form-input-box">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email*"
+                          required="required" data-error="Valid email is required.">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group form-input-box">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject"
+                          required="required">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group form-input-box">
+                        <textarea class="form-control" id="message" name="message" rows="8"
+                          placeholder="Write Your Message*" required="required"
+                          data-error="Please, leave us a message."></textarea>
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" class="default-theme-btn-two" data-text="Send Message">Send
+                        Message<span></span></button>
+                    </div>
+                    <div class="messages">
+                      <div class="alert alert alert-success alert-dismissable alert-dismissable hidden" id="msgSubmit">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Thank You! your message has been sent. </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Contact Section -->
   <!--  Footer  -->
   <footer id="footer" class="footer-section">
     <div class="container">
@@ -808,7 +900,7 @@
               <div class="footer-text">
                 <p><i class="bi bi-geo-alt-fill mr-15"></i> 101 West Town , PBO 12345, United States</p>
                 <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +1 1234 56 789</p>
-                <p><i class="bi bi-envelope-fill mr-15"></i> contact@example.com</p>
+                <p><i class="bi bi-envelope-fill mr-15"></i> simvai.cy@gmail.com</p>
               </div>
             </div>
             <div class="footer-widget">
@@ -830,8 +922,7 @@
         <div class="row">
           <div class="col-xl-12 col-lg-12 text-center">
             <div class="copyright-text">
-              <p>SIMVAI<span>.</span> © 2024<a
-                  href="https://www.templatemonster.com/authors/zrthemes/"></a></p>
+              <p>SIMVAI<span>.</span> © 2024<a href="https://www.templatemonster.com/authors/zrthemes/"></a></p>
             </div>
           </div>
         </div>

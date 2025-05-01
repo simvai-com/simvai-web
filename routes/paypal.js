@@ -1,18 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { createOrder, captureOrder } = require('../lib/paypal');
-const prisma = require('../lib/prisma.cjs'); // CJS-обёртка Prisma
 
-router.post('/api/paypal/order', async (req, res) => {
+const { createOrder, captureOrder } = require('../lib/paypal');
+const prisma = require('../lib/prisma.cjs');
+const { sendPaymentConfirmationEmail } = require('../lib/email');
+
+// POST /api/paypal/order
+router.post('/order', async (req, res) => {
   try {
-    const order = await createOrder();
+    const { price } = req.body;
+    const order = await createOrder(price); // <-- желательно передавать сумму
     res.json(order);
   } catch (err) {
+    console.error('Error creating PayPal order:', err);
     res.status(500).send('Error creating PayPal order');
   }
 });
 
-router.post('/api/paypal/capture/:orderId', async (req, res) => {
+// POST /api/paypal/capture/:orderId
+router.post('/capture/:orderId', async (req, res) => {
   try {
     const result = await captureOrder(req.params.orderId);
 
@@ -28,7 +34,6 @@ router.post('/api/paypal/capture/:orderId', async (req, res) => {
     const currency = purchase.amount.currency_code;
     const status = purchase.status;
 
-    // Найдём пользователя по email
     const user = await prisma.userSimvai.findUnique({
       where: { email },
     });
@@ -37,7 +42,6 @@ router.post('/api/paypal/capture/:orderId', async (req, res) => {
       return res.status(404).json({ error: 'User not found in DB' });
     }
 
-    // Сохраняем транзакцию
     const transaction = await prisma.transaction.create({
       data: {
         userId: user.id,
@@ -46,6 +50,10 @@ router.post('/api/paypal/capture/:orderId', async (req, res) => {
         status: status.toLowerCase(),
       },
     });
+
+    if (status === 'COMPLETED') {
+      sendPaymentConfirmationEmail({ to: email, amount }).catch(console.error);
+    }
 
     res.json({ success: true, transaction });
   } catch (err) {
