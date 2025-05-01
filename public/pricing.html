@@ -46,12 +46,14 @@
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/images/simvai/simvai-full-logo.png" alt="logo" class="img-fluid" style="max-height: 80px;">
+        <img src="assets/images/simvai/simvai-full-logo-white.png" alt="logo" class="img-fluid" style="max-height: 80px;">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="">Home</a></li>
           <li><a href="pricing.html" class="">Pricing</a></li>
+          <li><a href="contact.html" class="">Contacts</a></li>
+
           <!-- <li class="dropdown"><a href="services.html"><span>Services</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
@@ -127,7 +129,7 @@
                     <span class="price-current">$30</span>
                     <span class="price-old">$50</span>
                   </div>
-                  
+
                 </div>
 
                 <!-- ⏳ Таймер -->
@@ -169,7 +171,7 @@
                     <!-- <span class="price-label">Временно:</span> -->
                     <span class="price-current">$75</span>
                   </div>
-                  
+
                 </div>
                 <div class="option d-flex flex-column flex-grow-1">
                   <ul class="mb-4">
@@ -201,262 +203,377 @@
         </div>
       </div>
 
-      <!-- Modal -->
       <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="purchaseModalLabel">Confirm Your Purchase</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+      
             <div class="modal-body">
-              <p>Вы уверены, что хотите приобрести билет за <strong id="modal-price">$0</strong>?</p>
-              <div id="modal-paypal-button-container"></div>
-              <div id="modal-message" class="text-success mt-3" style="display: none;">✅ Оплата прошла успешно!</div>
+              <!-- 🟡 Основной блок: цена, промокод, PayPal -->
+              <div id="modal-body-content">
+                <p>Ticket price: <strong id="modal-price" data-base="0">€0</strong></p>
+      
+                <div class="mb-3">
+                  <label for="promoInput" class="form-label">Promo Code</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="promoInput" placeholder="Enter promo code">
+                    <button class="btn btn-outline-danger" id="applyPromoBtn">Apply</button>
+                  </div>
+                  <div id="promoStatus" style="font-size: 13px; margin-top: 5px;"></div>
+                </div>
+      
+                <div id="modal-paypal-button-container" class="mb-3"></div>
+              </div>
+      
+              <!-- ✅ Успешная оплата -->
+              <div id="modal-success" style="display: none;">
+                <div style="background: #e7f8ed; border-left: 5px solid #3cb371; padding: 20px; border-radius: 6px;">
+                  <h5 style="color: #2e7d32;">✅ Payment Successful</h5>
+                  <p>Thank you for your purchase!</p>
+                  <ul style="padding-left: 18px; font-size: 15px;">
+                    <li><strong>Plan:</strong> <span id="success-plan-name">Registration</span></li>
+                    <li><strong>Amount:</strong> <span id="success-amount">€0</span></li>
+                    <li><strong>Receipt:</strong> Sent to <span id="success-email">your@email.com</span></li>
+                  </ul>
+                </div>
+              </div>
+      
+              <!-- ❌ Ошибка оплаты -->
+              <div id="modal-error" style="display: none;">
+                <div style="background: #fdecea; border-left: 5px solid #d32f2f; padding: 20px; border-radius: 6px;">
+                  <h5 style="color: #d32f2f;">❌ Payment Failed</h5>
+                  <p id="modal-error-message">Something went wrong. Please try again.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-
-      <!--  End Pricing Section  -->
+      
     </div>
-    <!-- Page Main -->
 
-    <!--  Footer  -->
-    <footer id="footer" class="footer-section">
-      <div class="container">
-        <div class="footer-content pb-5">
-          <div class="row">
-            <div class="col-xl-4 col-lg-4 mb-50">
-              <div class="footer-widget">
-                <div class="footer-logo">
-                  <a href="#" class="logo d-flex align-items-center">
-                    <img src="assets/images/simvai/SIMVAI.png" alt="logo">
-                  </a>
-                </div>
-                <div class="footer-text">
-                  <p>At RedTheme we are passionate about providing businesses with the IT solutions they need to succeed
-                    in today's competitive marketplace.</p>
-                </div>
-                <div class="footer-social-icon">
-                  <span>Follow us</span>
-                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                </div>
+
+
+    <!--  End Pricing Section  -->
+  </div>
+  <!-- Page Main -->
+
+  <!--  Footer  -->
+  <footer id="footer" class="footer-section">
+    <div class="container">
+      <div class="footer-content pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 mb-50">
+            <div class="footer-widget">
+              <div class="footer-logo">
+                <a href="#" class="logo d-flex align-items-center">
+                  <img src="assets/images/simvai/simvai-full-logo-white.png" alt="logo" class="img-fluid" style="max-height: 120px;">
+                </a>
+              </div>
+              <div class="footer-text">
+                <p>New Look: Crypto, Capital, Business</p>
+              </div>
+              <div class="footer-social-icon">
+                <span>Follow us</span>
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
+          </div>
 
-            <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
-              <div class="service-widget footer-widget">
-                <div class="footer-widget-heading">
-                  <h3>Services</h3>
-                </div>
-                <ul class="list">
-                  <li><a href="single-service.html">Web Design</a></li>
-                  <li><a href="single-service.html">App Developemnt</a></li>
-                  <li><a href="single-service.html">Cloud Services</a></li>
-                  <li><a href="single-service.html">Domain And Hosting</a></li>
+          <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+            <div class="service-widget footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Services</h3>
+              </div>
+              <ul class="list">
+                <li><a href="single-service.html">Web Design</a></li>
+                <li><a href="single-service.html">App Developemnt</a></li>
+                <li><a href="single-service.html">Cloud Services</a></li>
+                <!-- <li><a href="single-service.html">Domain And Hosting</a></li>
                   <li><a href="single-service.html">Seo Optimization</a></li>
                   <li><a href="single-service.html">Social Media</a></li>
                   <li><a href="single-service.html">Data Secure</a></li>
-                  <li><a href="single-service.html">Web Hosting</a></li>
-                </ul>
-              </div>
+                  <li><a href="single-service.html">Web Hosting</a></li> -->
+              </ul>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
-              <div class="service-widget footer-widget">
-                <div class="footer-widget-heading">
-                  <h3>Information</h3>
-                </div>
-                <ul class="list">
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="pricing.html">Pricing</a></li>
-                  <li><a href="faqs.html">FAQs</a></li>
-                  <li><a href="team.html">Team</a></li>
+          </div>
+          <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+            <div class="service-widget footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Information</h3>
+              </div>
+              <ul class="list">
+                <li><a href="about.html">About</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <!-- <li><a href="team.html">Team</a></li>
                   <li><a href="blogs.html">Blogs</a></li>
                   <li><a href="single-blog.html">Single Blog</a></li>
                   <li><a href="page.html">Terms &amp; Conditions</a></li>
-                  <li><a href="page.html">Sample Page</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-              <div class="contact-widget footer-widget mb-25">
-                <div class="footer-widget-heading">
-                  <h3>Contacts</h3>
-                </div>
-                <div class="footer-text">
-                  <p><i class="bi bi-geo-alt-fill mr-15"></i> Limassol, Cyprus</p>
-                  <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +1 1234 56 789</p>
-                  <p><i class="bi bi-envelope-fill mr-15"></i> simvai.cy@gmail.com</p>
-                </div>
-              </div>
-              <div class="footer-widget">
-                <div class="footer-widget-heading">
-                  <h3>Newsletter</h3>
-                </div>
-                <div class="footer-text mb-25">
-                  <p>Don't miss to subscribe to our new feeds, kindly fill the form below.</p>
-                </div>
-                <div class="subscribe-form">
-                  <form action="#">
-                    <input type="text" placeholder="Email Address">
-                    <button><i class="bi bi-telegram"></i></button>
-                  </form>
-                </div>
-              </div>
+                  <li><a href="page.html">Sample Page</a></li> -->
+              </ul>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-12 col-lg-12 text-center">
-              <div class="copyright-text">
-                <p>RedTheme<span>.</span> © 2024 - Designed by <a
-                    href="https://www.templatemonster.com/authors/zrthemes/">ZRTHEMES</a></p>
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+            <div class="contact-widget footer-widget mb-25">
+              <div class="footer-widget-heading">
+                <h3>Contacts</h3>
               </div>
+              <div class="footer-text">
+                <p><i class="bi bi-geo-alt-fill mr-15"></i> Limassol, Cyprus</p>
+                <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +357-97-77-70-30</p>
+                <p><i class="bi bi-envelope-fill mr-15"></i> simvai@simvai.com</p>
+              </div>
+            </div>
+            <!-- <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Newsletter</h3>
+              </div>
+              <div class="footer-text mb-25">
+                <p>Don't miss to subscribe to our new feeds, kindly fill the form below.</p>
+              </div>
+              <div class="subscribe-form">
+                <form action="#">
+                  <input type="text" placeholder="Email Address">
+                  <button>Subscribe<span></span></button>
+                </form>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 text-center">
+            <div class="copyright-text">
+              <p>SIMVAI<span>.</span> © 2024<a href="https://www.templatemonster.com/authors/zrthemes/"></a></p>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- End Footer -->
+    </div>
+  </footer>
+  <!-- End Footer -->
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center active">
-      <i class="bi bi-arrow-up-short"></i>
-    </a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center active">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/javascripts/jquery.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/javascripts/plugins.js"></script>
-    <script src="assets/javascripts/purecounter_vanilla.js"></script>
-    <script src="assets/javascripts/validator.min.js"></script>
-    <script src="assets/javascripts/contactform.js"></script>
-    <script src="assets/javascripts/particles.min.js"></script>
-    <script src="assets/javascripts/script.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/javascripts/jquery.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/javascripts/plugins.js"></script>
+  <script src="assets/javascripts/purecounter_vanilla.js"></script>
+  <script src="assets/javascripts/validator.min.js"></script>
+  <script src="assets/javascripts/contactform.js"></script>
+  <script src="assets/javascripts/particles.min.js"></script>
+  <script src="assets/javascripts/script.js"></script>
+  <script src="assets/javascripts/contact.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/javascripts/main.js"></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        fetch('/user')
-          .then(res => res.json())
-          .then(data => {
-            const loginBtn = document.getElementById('login-btn');
-            if (data.loggedIn && loginBtn) {
-              loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
+  <!-- Template Main JS File -->
+  <script src="assets/javascripts/main.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('/user')
+        .then(res => res.json())
+        .then(data => {
+          const loginBtn = document.getElementById('login-btn');
+          if (data.loggedIn && loginBtn) {
+            loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
                                   <a href="/logout" class="default-theme-btn-one">Logout</a>`;
-            }
-          });
-      });
-    </script>
-    <script
-      src="https://www.paypal.com/sdk/js?client-id=AdUCBuT5I3f8mVfMOpESn2fgl5QvEQ6GZ8xquHL-BPErcknGA8-adUyp-GlCxpFK8tywbsNmea6y_dco"></script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Инициализируем модалку
-        const modalEl = document.getElementById('purchaseModal');
-        const priceText = document.getElementById('modal-price');
-        const paypalContainer = document.getElementById('modal-paypal-button-container');
-        const successMsg = document.getElementById('modal-message');
-        let modal = new bootstrap.Modal(modalEl);
+          }
+        });
+    });
+  </script>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AdUCBuT5I3f8mVfMOpESn2fgl5QvEQ6GZ8xquHL-BPErcknGA8-adUyp-GlCxpFK8tywbsNmea6y_dco&currency=EUR"></script>
 
 
-        // Вешаем обработчики на кнопки
-        document.querySelectorAll('.open-modal-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const price = btn.getAttribute('data-price');
-            priceText.textContent = `$${price}`;
-            paypalContainer.innerHTML = '';
-            if (successMsg) successMsg.style.display = 'none';
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalEl = document.getElementById('purchaseModal');
+      const modal = new bootstrap.Modal(modalEl);
+      const modalPrice = document.getElementById('modal-price');
+      const promoInput = document.getElementById('promoInput');
+      const promoStatus = document.getElementById('promoStatus');
+      const applyPromoBtn = document.getElementById('applyPromoBtn');
+      const paypalContainer = document.getElementById('modal-paypal-button-container');
+      const successMsg = document.getElementById('modal-message');
 
-            // Показываем модалку
-            modal.show();
+      let selectedPrice = 0;
+      function showPaymentError(message) {
+        const content = document.getElementById('modal-body-content');
+        const errorBox = document.getElementById('modal-error');
+        const errorText = document.getElementById('modal-error-message');
 
-            // Рендерим PayPal после отображения модалки
-            setTimeout(() => {
-              if (paypal && paypal.Buttons) {
-                paypal.Buttons({
-                  createOrder: function () {
-                    return fetch('/api/paypal/order', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ price })
-                    }).then(res => res.json()).then(order => order.id);
-                  },
-                  onApprove: function (data) {
-                    return fetch(`/api/paypal/capture/${data.orderID}`, {
-                      method: 'POST'
-                    }).then(res => res.json()).then(details => {
-                      if (successMsg) successMsg.style.display = 'block';
+        if (content) content.style.display = 'none';
+        if (errorBox) errorBox.style.display = 'block';
+        if (errorText) errorText.textContent = message || 'Payment failed. Please try again.';
+      }
+      document.querySelectorAll('.open-modal-btn').forEach(btn => {
+
+        btn.addEventListener('click', () => {
+          const price = parseFloat(btn.getAttribute('data-price'));
+          selectedPrice = price;
+
+          // Сброс
+          modalPrice.textContent = `€${price}`;
+          modalPrice.setAttribute('data-base', price);
+          paypalContainer.innerHTML = '';
+          if (promoStatus) promoStatus.textContent = '';
+          if (successMsg) successMsg.style.display = 'none';
+          if (promoInput) promoInput.value = '';
+
+          modal.show();
+
+          setTimeout(() => {
+            if (paypal && paypal.Buttons) {
+              paypal.Buttons({
+                createOrder: function () {
+                  const promoCode = promoInput?.value;
+
+                  return fetch('/api/paypal/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ price: selectedPrice, promoCode })
+                  })
+                    .then(res => {
+                      if (!res.ok) {
+                        showPaymentError('Promo code is invalid or expired.');
+                        throw new Error('Promo invalid');
+                      }
+                      return res.json();
+                    })
+                    .then(data => data.order.id)
+                    .catch(() => {
+                      showPaymentError('Error creating payment. Try again later.');
                     });
-                  }
-                }).render('#modal-paypal-button-container');
-              } else {
-                console.error('⚠️ PayPal SDK not loaded or not available');
-              }
-            }, 200); // подождать чтобы DOM успел показать модалку
-          });
+                },
+                onApprove: function (data) {
+                  return fetch(`/api/paypal/capture/${data.orderID}`, {
+                    method: 'POST'
+                  })
+                    .then(res => {
+                      if (!res.ok) throw new Error('Capture failed');
+                      return res.json();
+                    })
+                    .then(details => {
+                      const content = document.getElementById('modal-body-content');
+                      const successBox = document.getElementById('modal-success');
+                      const planSpan = document.getElementById('success-plan-name');
+                      const priceSpan = document.getElementById('success-amount');
+                      const emailSpan = document.getElementById('success-email');
+
+                      if (content) content.style.display = 'none';
+                      if (successBox) {
+                        planSpan.textContent = 'Registration'; // Или бери из data-атрибутов
+                        priceSpan.textContent = `€${details.transaction.amount}`;
+                        emailSpan.textContent = details.transaction?.userEmail || 'your email';
+                        successBox.style.display = 'block';
+                      }
+                    })
+                    .catch(err => {
+                      showPaymentError('Something went wrong while confirming payment.');
+                    });
+                }
+
+              }).render('#modal-paypal-button-container');
+            }
+          }, 200);
         });
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const now = new Date();
-        const priceIncreaseDate = new Date("2025-06-01T00:00:00");
+      // Обработчик кнопки "Apply"
+      if (applyPromoBtn) {
+        applyPromoBtn.addEventListener('click', async () => {
+          const code = promoInput?.value.trim();
+          const basePrice = parseFloat(modalPrice.getAttribute('data-base')) || selectedPrice;
 
-        let price = now >= priceIncreaseDate ? 50 : 30;
-
-        const priceElements = document.querySelectorAll(".price-value");
-        priceElements.forEach(el => {
-          el.textContent = price;
-        });
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        const faceToFacePrice = 75;
-
-        const priceEl = document.getElementById("face-to-face-price");
-        if (priceEl) {
-          priceEl.textContent = faceToFacePrice;
-        }
-      });
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const deadline = new Date("2025-06-01T00:00:00").getTime();
-        const label = document.getElementById("pulse-time");
-        const box = document.getElementById("pulse-timer");
-
-        function updatePulseTimer() {
-          const now = Date.now();
-          const left = deadline - now;
-
-          if (left <= 0) {
-            label.textContent = "⛔ Время вышло";
-            box.style.backgroundColor = "#eee";
-            box.style.color = "#666";
-            box.style.animation = "none";
+          if (!code) {
+            promoStatus.textContent = 'Please enter a promo code.';
+            promoStatus.style.color = 'gray';
             return;
           }
 
-          const days = Math.floor(left / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((left % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((left % (1000 * 60)) / 1000);
+          const res = await fetch('/api/promo-check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, price: basePrice })
+          });
 
-          label.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          const result = await res.json();
+
+          if (res.ok) {
+            promoStatus.textContent = `✅ Promo applied: €${result.newPrice}`;
+            promoStatus.style.color = 'green';
+            modalPrice.textContent = `€${result.newPrice}`;
+            selectedPrice = parseFloat(result.newPrice); // обновляем цену
+          } else {
+            promoStatus.textContent = `❌ ${result.error || 'Invalid promo code'}`;
+            promoStatus.style.color = 'red';
+          }
+        });
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const now = new Date();
+      const priceIncreaseDate = new Date("2025-06-01T00:00:00");
+
+      let price = now >= priceIncreaseDate ? 50 : 30;
+
+      const priceElements = document.querySelectorAll(".price-value");
+      priceElements.forEach(el => {
+        el.textContent = price;
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const faceToFacePrice = 75;
+
+      const priceEl = document.getElementById("face-to-face-price");
+      if (priceEl) {
+        priceEl.textContent = faceToFacePrice;
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const deadline = new Date("2025-06-01T00:00:00").getTime();
+      const label = document.getElementById("pulse-time");
+      const box = document.getElementById("pulse-timer");
+
+      function updatePulseTimer() {
+        const now = Date.now();
+        const left = deadline - now;
+
+        if (left <= 0) {
+          label.textContent = "⛔ Время вышло";
+          box.style.backgroundColor = "#eee";
+          box.style.color = "#666";
+          box.style.animation = "none";
+          return;
         }
 
-        updatePulseTimer();
-        setInterval(updatePulseTimer, 1000);
+        const days = Math.floor(left / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((left % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((left % (1000 * 60)) / 1000);
 
-      });
-    </script>
+        label.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updatePulseTimer();
+      setInterval(updatePulseTimer, 1000);
+
+    });
+  </script>
 
 </body>
 

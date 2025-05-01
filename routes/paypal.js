@@ -9,13 +9,20 @@ const { sendPaymentConfirmationEmail } = require('../lib/email');
 router.post('/order', async (req, res) => {
   try {
     const { price } = req.body;
-    const order = await createOrder(price); // <-- желательно передавать сумму
-    res.json(order);
+    const finalPrice = parseFloat(price);
+
+    if (!finalPrice || isNaN(finalPrice)) {
+      return res.status(400).json({ error: 'Invalid price provided' });
+    }
+
+    const order = await createOrder(finalPrice.toFixed(2));
+    res.json({ order, finalPrice });
   } catch (err) {
     console.error('Error creating PayPal order:', err);
     res.status(500).send('Error creating PayPal order');
   }
 });
+
 
 // POST /api/paypal/capture/:orderId
 router.post('/capture/:orderId', async (req, res) => {

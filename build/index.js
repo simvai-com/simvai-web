@@ -27,10 +27,15 @@ app.use(passport.session());
 const authRoutes = require('../routes/auth');
 const paypalRoutes = require('../routes/paypal');
 const userRoutes = require('../routes/users');
+const promoRoutes = require('../routes/promo');
+const handleContactForm = require('../assets/javascripts/contact');
 
+
+app.post('/contact', handleContactForm);
 app.use('/api/paypal', paypalRoutes); // ✅ Префикс
 app.use('/api/users', userRoutes);
 app.use(authRoutes);
+app.use('/api', promoRoutes);
 
 // Статические файлы
 const rootDir = path.join(__dirname, '..');

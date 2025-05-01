@@ -2,8 +2,8 @@ const express = require('express');
 const prisma = require('../lib/prisma.cjs');
 
 const router = express.Router();
-
-router.get('/api/users', async (req, res) => {
+// routes/users.js
+router.get('/', async (req, res) => {
     try {
         const users = await prisma.userSimvai.findMany({
             include: {

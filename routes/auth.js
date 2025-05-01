@@ -3,6 +3,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const prisma = require('../lib/prisma.cjs');
 require('dotenv').config();
+const { sendWelcomeEmail } = require('../lib/email'); // добавь функцию welcome-уведомления
 
 const router = express.Router();
 
@@ -15,16 +16,28 @@ passport.use(new GoogleStrategy({
     const email = profile.emails[0].value;
     const name = profile.displayName;
 
-    // Сохраняем или находим пользователя
-    const user = await prisma.userSimvai.upsert({
-      where: { email },
-      update: {},
-      create: { email, name }
+    // Проверка — уже есть такой пользователь?
+    const existingUser = await prisma.userSimvai.findUnique({
+      where: { email }
     });
 
-    done(null, user); // передаём объект в сессию
+    let user;
+
+    if (existingUser) {
+      user = existingUser; // просто берём его
+    } else {
+      // Новый пользователь — создаём и шлём письмо
+      user = await prisma.userSimvai.create({
+        data: { email, name }
+      });
+
+      // Отправка welcome-уведомления
+      sendWelcomeEmail({ to: email, name }).catch(console.error);
+    }
+
+    done(null, user);
   } catch (err) {
-    console.error('Ошибка при upsert пользователя:', err);
+    console.error('Ошибка при авторизации через Google:', err);
     done(err);
   }
 }));

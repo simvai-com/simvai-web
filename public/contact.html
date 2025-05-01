@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Contact - RedTheme - IT Website Template</title>
+  <title>SIMVAI</title>
   <meta content="" name="RedTheme - IT Website Template">
   <meta name="description"
     content="RedTheme - IT Website Template - IT Solutions & Business Services Multipurpose Responsive HTML5 Bootstrap5 Website Template">
@@ -13,8 +13,8 @@
   <meta content="" name="ZRTHEMES">
 
   <!-- Favicons -->
-  <link href="assets/images/favicon.png" rel="icon">
-  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="icon">
+  <link href="assets/images/simvai/simvai_logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +33,7 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="assets/stylesheets/styles.css" rel="stylesheet">
+  <link href="assets/stylesheets/custom-style.css" rel="stylesheet">
 
 </head>
 
@@ -45,13 +46,16 @@
   <header id="header" class="header d-flex align-items-center sticked stikcy-menu">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/images/logo.png" alt="logo">
+        <img src="assets/images/simvai/simvai-full-logo-white.png" alt="logo" class="img-fluid"
+          style="max-height: 80px;">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="">Home</a></li>
-          <li><a href="about.html" class="">About Us</a></li>
-          <li class="dropdown"><a href="services.html"><span>Services</span> <i
+          <li><a href="pricing.html" class="">Pricing</a></li>
+          <li><a href="contact.html" class="">Contacts</a></li>
+
+          <!-- <li class="dropdown"><a href="services.html"><span>Services</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="services.html">Services</a></li>
@@ -73,10 +77,10 @@
               <li><a href="blogs.html">Blogs Grid</a></li>
               <li><a href="single-blog.html">Blog Details</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </nav><!-- .navbar -->
-      <a href="contact.html" class="default-theme-btn-one">Contact Us <span></span></a>
+      <a href="/auth/google" class="default-theme-btn-one" id="login-btn">Login <span></span></a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -108,7 +112,11 @@
   <!-- Page Main -->
   <div class="single-page">
     <!-- Start Contact Section -->
-    <div id="contact" class="contact-section">
+    <div id="contact" class="contact-section section">
+      <div class="section-header">
+        <h2>Contact Us</h2>
+        <p>We're always happy to hear from you! </p>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-12" data-aos="fade-right">
@@ -118,8 +126,8 @@
                   <div class="single-contact-info-box">
                     <div class="contact-info">
                       <h6>Address:</h6>
-                      <p>11 West Town</p>
-                      <p>PBo 12345, United States</p>
+                      <p>Cyprus</p>
+                      <p>Limassol</p>
                     </div>
                   </div>
                 </div>
@@ -127,8 +135,8 @@
                   <div class="single-contact-info-box">
                     <div class="contact-info">
                       <h6>Phone:</h6>
-                      <p>+1 1234 56 789</p>
-                      <p>+1 1234 56 780</p>
+                      <p>+357-97-77-70-30</p>
+                      <!-- <p>+1 1234 56 780</p> -->
                     </div>
                   </div>
                 </div>
@@ -136,8 +144,8 @@
                   <div class="single-contact-info-box">
                     <div class="contact-info">
                       <h6>Email:</h6>
-                      <p>info@example.com</p>
-                      <p>email@example.com</p>
+                      <p>simvai@simvai.com</p>
+                      <!-- <p>email@example.com</p> -->
                     </div>
                   </div>
                 </div>
@@ -147,7 +155,7 @@
           <div class="col-lg-8 col-md-12" data-aos="fade-left">
             <div class="contact-form-box contact-form contact-form-3">
               <div class="form-container-box">
-                <form class="contact-form form" id="ajax-contact" method="post" action="assets/phpscripts/contact.php">
+                <form class="contact-form form" id="ajax-contact">
                   <div class="controls">
                     <div class="row">
                       <div class="col-md-6">
@@ -184,8 +192,10 @@
                       </div>
                       <div class="messages">
                         <div class="alert alert alert-success alert-dismissable alert-dismissable hidden"
-                          id="msgSubmit"><button type="button" class="close" data-dismiss="alert"
-                            aria-hidden="true">&times;</button> Thank You! your message has been sent. </div>
+                          id="msgSubmit">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          Thank You! your message has been sent.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -200,7 +210,7 @@
 
     <div id="map">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3093.98973709836!2d-86.54376691239675!3d39.15221505859619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDA5JzA4LjAiTiA4NsKwMzInMjAuMCJX!5e0!3m2!1sen!2sus!4v1699530779885!5m2!1sen!2sus"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13285.123456789!2d33.022617!3d34.707130!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1699530779885!5m2!1sen!2sus"
         frameborder="0" style="border:0; width: 100%; height: 390px; margin-bottom: -10px;" allowfullscreen
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
@@ -216,12 +226,12 @@
             <div class="footer-widget">
               <div class="footer-logo">
                 <a href="#" class="logo d-flex align-items-center">
-                  <img src="assets/images/logo.png" alt="logo">
+                  <img src="assets/images/simvai/simvai-full-logo-white.png" alt="logo" class="img-fluid"
+                    style="max-height: 120px;">
                 </a>
               </div>
               <div class="footer-text">
-                <p>At RedTheme we are passionate about providing businesses with the IT solutions they need to succeed
-                  in today's competitive marketplace.</p>
+                <p>New Look: Crypto, Capital, Business</p>
               </div>
               <div class="footer-social-icon">
                 <span>Follow us</span>
@@ -242,11 +252,11 @@
                 <li><a href="single-service.html">Web Design</a></li>
                 <li><a href="single-service.html">App Developemnt</a></li>
                 <li><a href="single-service.html">Cloud Services</a></li>
-                <li><a href="single-service.html">Domain And Hosting</a></li>
-                <li><a href="single-service.html">Seo Optimization</a></li>
-                <li><a href="single-service.html">Social Media</a></li>
-                <li><a href="single-service.html">Data Secure</a></li>
-                <li><a href="single-service.html">Web Hosting</a></li>
+                <!-- <li><a href="single-service.html">Domain And Hosting</a></li>
+                  <li><a href="single-service.html">Seo Optimization</a></li>
+                  <li><a href="single-service.html">Social Media</a></li>
+                  <li><a href="single-service.html">Data Secure</a></li>
+                  <li><a href="single-service.html">Web Hosting</a></li> -->
               </ul>
             </div>
           </div>
@@ -259,11 +269,11 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="single-blog.html">Single Blog</a></li>
-                <li><a href="page.html">Terms &amp; Conditions</a></li>
-                <li><a href="page.html">Sample Page</a></li>
+                <!-- <li><a href="team.html">Team</a></li>
+                  <li><a href="blogs.html">Blogs</a></li>
+                  <li><a href="single-blog.html">Single Blog</a></li>
+                  <li><a href="page.html">Terms &amp; Conditions</a></li>
+                  <li><a href="page.html">Sample Page</a></li> -->
               </ul>
             </div>
           </div>
@@ -273,12 +283,12 @@
                 <h3>Contacts</h3>
               </div>
               <div class="footer-text">
-                <p><i class="bi bi-geo-alt-fill mr-15"></i> 101 West Town , PBO 12345, United States</p>
-                <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +1 1234 56 789</p>
-                <p><i class="bi bi-envelope-fill mr-15"></i> contact@example.com</p>
+                <p><i class="bi bi-geo-alt-fill mr-15"></i> Limassol, Cyprus</p>
+                <p><i class="bi bi-telephone-inbound-fill mr-15"></i> +357-97-77-70-30</p>
+                <p><i class="bi bi-envelope-fill mr-15"></i> simvai@simvai.com</p>
               </div>
             </div>
-            <div class="footer-widget">
+            <!-- <div class="footer-widget">
               <div class="footer-widget-heading">
                 <h3>Newsletter</h3>
               </div>
@@ -288,17 +298,16 @@
               <div class="subscribe-form">
                 <form action="#">
                   <input type="text" placeholder="Email Address">
-                  <button><i class="bi bi-telegram"></i></button>
+                  <button>Subscribe<span></span></button>
                 </form>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="row">
           <div class="col-xl-12 col-lg-12 text-center">
             <div class="copyright-text">
-              <p>RedTheme<span>.</span> © 2024 - Designed by <a
-                  href="https://www.templatemonster.com/authors/zrthemes/">ZRTHEMES</a></p>
+              <p>SIMVAI<span>.</span> © 2024<a href="https://www.templatemonster.com/authors/zrthemes/"></a></p>
             </div>
           </div>
         </div>
@@ -326,7 +335,54 @@
 
   <!-- Template Main JS File -->
   <script src="assets/javascripts/main.js"></script>
-
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('/user')
+        .then(res => res.json())
+        .then(data => {
+          const loginBtn = document.getElementById('login-btn');
+          if (data.loggedIn && loginBtn) {
+            loginBtn.outerHTML = `<span class="user-email" style="color: white">${data.email}</span>
+                                  <a href="/logout" class="default-theme-btn-one">Logout</a>`;
+          }
+        });
+    });
+  </script>
+  <script>
+    document.getElementById('ajax-contact').addEventListener('submit', async function (e) {
+      e.preventDefault();
+    
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.querySelector('input[name="subject"]').value.trim();
+      const message = document.getElementById('message').value.trim();
+    
+      const payload = { name, email, subject, message };
+    
+      try {
+        const response = await fetch('/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+    
+        const result = await response.json();
+    
+        if (result.success) {
+          document.getElementById('msgSubmit').classList.remove('hidden');
+          document.getElementById('ajax-contact').reset();
+        } else {
+          alert('Ошибка при отправке сообщения. Попробуйте позже.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Ошибка соединения с сервером.');
+      }
+    });
+    </script>
+    
 </body>
 
 </html>
