@@ -129,14 +129,14 @@
 
           <p>
             Location:
-            <a class="no-hover-color" 
-            href="https://maps.app.goo.gl/xZoc8c23agcqE2nR7" 
-            target="_blank" 
-            rel="noopener noreferrer">
-            Affiliate Embassy, Limassol (Parekklisia)
-         </a>
-         
-          </p>          <p>We expect to gather 100+ participants, providing opportunities for networking, sharing experiences, and business development.</p>
+            <a class="no-hover-color" href="https://maps.app.goo.gl/xZoc8c23agcqE2nR7" target="_blank"
+              rel="noopener noreferrer">
+              Affiliate Embassy, Limassol (Parekklisia)
+            </a>
+
+          </p>
+          <p>We expect to gather 100+ participants, providing opportunities for networking, sharing experiences, and
+            business development.</p>
           <a href="/assets/images/Whyattend.docx" class="default-theme-btn-one mr-20" data-aos="fade-up">Download
             Event Program<span></span></a>
         </div>
@@ -146,12 +146,13 @@
       </div>
     </div>
   </section>
-  
+
   <section class="section" id="why-attend">
     <div class="container" data-aos="fade-up">
       <h2 class="section-title text-center mb-4">Why Attend?</h2>
-      <p class="text-center mb-5">This event is for traders, investors, fintech developers, brokers, and innovators looking to network, learn, and showcase their work.</p>
-      
+      <p class="text-center mb-5">This event is for traders, investors, fintech developers, brokers, and innovators
+        looking to network, learn, and showcase their work.</p>
+
       <div class="row">
         <div class="col-md-4">
           <div class="card text-center p-4">
@@ -269,7 +270,7 @@
           <!-- start  skills -->
           <div class="col-md-12">
             <h3 class="mb-4" data-aos="fade-up">Preliminary Agenda</h3>
-          
+
             <div class="timeline">
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-time">16:00</div>
@@ -278,7 +279,7 @@
                   <p>Kick off the event with introductions over welcome drinks.</p>
                 </div>
               </div>
-          
+
               <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="timeline-time">16:45</div>
                 <div class="timeline-content">
@@ -292,7 +293,7 @@
                   <p><em>Speakers: To be announced</em></p>
                 </div>
               </div>
-          
+
               <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="timeline-time">17:45</div>
                 <div class="timeline-content">
@@ -300,7 +301,7 @@
                   <p>Time to relax and recharge.</p>
                 </div>
               </div>
-          
+
               <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="timeline-time">18:00</div>
                 <div class="timeline-content">
@@ -314,17 +315,18 @@
                   <p><em>Speakers: To be announced</em></p>
                 </div>
               </div>
-          
+
               <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
                 <div class="timeline-time">19:00</div>
                 <div class="timeline-content">
                   <h5>Networking Buffet</h5>
-                  <p>Casual yet focused networking session with gourmet buffet and special guest <strong>DJ DiKo</strong>.</p>
+                  <p>Casual yet focused networking session with gourmet buffet and special guest <strong>DJ
+                      DiKo</strong>.</p>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <!-- end  skills -->
 
           <!-- start img section -->
@@ -365,7 +367,7 @@
           <!-- end img section -->
 
           <!-- project details -->
-         
+
           <!-- project details -->
         </div>
       </div>
@@ -374,14 +376,14 @@
   </div>
   <!-- Single Page -->
 
-     <!--  Start Counter Section -->
+  <!--  Start Counter Section -->
   <div id="stats-counter" class="stats-counter section">
     <div class="container" data-aos="fade-up">
 
     </div>
   </div>
   <!--  End Counter Section  -->
-   <!-- Page Main -->
+  <!-- Page Main -->
   <div class="single-page">
     <!--  Start Pricing Section  -->
     <div class="pricing section">
@@ -669,7 +671,7 @@
     </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const modalEl = document.getElementById('purchaseModal');
       const modal = new bootstrap.Modal(modalEl);
       const modalPrice = document.getElementById('modal-price');
@@ -680,22 +682,38 @@
       const successMsg = document.getElementById('modal-message');
 
       let selectedPrice = 0;
-      function showPaymentError(message) {
-        const content = document.getElementById('modal-body-content');
-        const errorBox = document.getElementById('modal-error');
-        const errorText = document.getElementById('modal-error-message');
 
-        if (content) content.style.display = 'none';
-        if (errorBox) errorBox.style.display = 'block';
-        if (errorText) errorText.textContent = message || 'Payment failed. Please try again.';
+      // 🟢 Получаем информацию о пользователе
+      let isLoggedIn = false;
+      try {
+        const res = await fetch('/user');
+        const data = await res.json();
+        isLoggedIn = data.loggedIn;
+      } catch (e) {
+        console.error('Ошибка при получении статуса логина:', e);
       }
-      document.querySelectorAll('.open-modal-btn').forEach(btn => {
 
+      // 🔄 Обрабатываем кнопки оплаты
+      document.querySelectorAll('.open-modal-btn').forEach(btn => {
+        const wrapper = btn.closest('.option');
+
+        if (!isLoggedIn) {
+          // Заменить кнопку на "Login to Register"
+          const loginBtn = document.createElement('a');
+          loginBtn.className = 'btn btn-outline-danger mt-auto';
+          loginBtn.href = '/auth/google';
+          loginBtn.textContent = 'Login to Register';
+
+          btn.remove();
+          wrapper.appendChild(loginBtn);
+          return; // не навешивать обработчик
+        }
+
+        // Только если залогинен — навешиваем обработчик оплаты
         btn.addEventListener('click', () => {
           const price = parseFloat(btn.getAttribute('data-price'));
           selectedPrice = price;
 
-          // Сброс
           modalPrice.textContent = `€${price}`;
           modalPrice.setAttribute('data-base', price);
           paypalContainer.innerHTML = '';
@@ -745,7 +763,7 @@
 
                       if (content) content.style.display = 'none';
                       if (successBox) {
-                        planSpan.textContent = 'Registration'; // Или бери из data-атрибутов
+                        planSpan.textContent = 'Registration';
                         priceSpan.textContent = `€${details.transaction.amount}`;
                         emailSpan.textContent = details.transaction?.userEmail || 'your email';
                         successBox.style.display = 'block';
@@ -755,14 +773,13 @@
                       showPaymentError('Something went wrong while confirming payment.');
                     });
                 }
-
               }).render('#modal-paypal-button-container');
             }
           }, 200);
         });
       });
 
-      // Обработчик кнопки "Apply"
+      // Промо-код
       if (applyPromoBtn) {
         applyPromoBtn.addEventListener('click', async () => {
           const code = promoInput?.value.trim();
@@ -786,35 +803,26 @@
             promoStatus.textContent = `✅ Promo applied: €${result.newPrice}`;
             promoStatus.style.color = 'green';
             modalPrice.textContent = `€${result.newPrice}`;
-            selectedPrice = parseFloat(result.newPrice); // обновляем цену
+            selectedPrice = parseFloat(result.newPrice);
           } else {
             promoStatus.textContent = `❌ ${result.error || 'Invalid promo code'}`;
             promoStatus.style.color = 'red';
           }
         });
       }
-    });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const now = new Date();
-      const priceIncreaseDate = new Date("2025-06-01T00:00:00");
+      function showPaymentError(message) {
+        const content = document.getElementById('modal-body-content');
+        const errorBox = document.getElementById('modal-error');
+        const errorText = document.getElementById('modal-error-message');
 
-      let price = now >= priceIncreaseDate ? 50 : 30;
-
-      const priceElements = document.querySelectorAll(".price-value");
-      priceElements.forEach(el => {
-        el.textContent = price;
-      });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-      const faceToFacePrice = 75;
-
-      const priceEl = document.getElementById("face-to-face-price");
-      if (priceEl) {
-        priceEl.textContent = faceToFacePrice;
+        if (content) content.style.display = 'none';
+        if (errorBox) errorBox.style.display = 'block';
+        if (errorText) errorText.textContent = message || 'Payment failed. Please try again.';
       }
     });
   </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const deadline = new Date("2025-06-01T00:00:00").getTime();
