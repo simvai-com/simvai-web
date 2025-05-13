@@ -75,3 +75,29 @@
     font-size: 15px;
   }
   
+  .timeline {
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 3px solid #ccc;
+  }
+  .timeline-item {
+    margin-bottom: 30px;
+  }
+  .timeline-time {
+    font-weight: bold;
+    color: #c00113;
+  }
+  .timeline-content h5 {
+    margin-top: 5px;
+    font-size: 18px;
+  }
+  .no-hover-color {
+    color: #c00113;
+    text-decoration: underline;
+  }
+  
+  .no-hover-color:hover {
+    color: #c00113;
+  }
+  
