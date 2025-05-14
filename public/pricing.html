@@ -13,8 +13,8 @@
   <meta content="" name="ZRTHEMES">
 
   <!-- Favicons -->
-  <link href="assets/images/simvai/simvai_logo.png" rel="icon">
-  <link href="assets/images/simvai/simvai_logo.png" rel="apple-touch-icon">
+  <link href="/assets/images/simvai/simvai_logo.png" rel="icon">
+  <link href="/assets/images/simvai/simvai_logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1001,7 +1001,40 @@
 
       });
     </script>
-
+ <script>
+  document.getElementById('ajax-contact').addEventListener('submit', async function (e) {
+    e.preventDefault();
+  
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.querySelector('input[name="subject"]').value.trim();
+    const message = document.getElementById('message').value.trim();
+  
+    const payload = { name, email, subject, message };
+  
+    try {
+      const response = await fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        document.getElementById('msgSubmit').classList.remove('hidden');
+        document.getElementById('ajax-contact').reset();
+      } else {
+        alert('Ошибка при отправке сообщения. Попробуйте позже.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Ошибка соединения с сервером.');
+    }
+  });
+  </script>
 </body>
 
 </html>
