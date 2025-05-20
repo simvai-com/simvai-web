@@ -907,11 +907,10 @@
           const wrapper = btn.closest('.option');
 
           if (!isLoggedIn) {
-            // Заменить кнопку на "Login to Register"
             const loginBtn = document.createElement('a');
             loginBtn.className = 'btn btn-outline-danger mt-auto';
             loginBtn.href = '/auth/google';
-            loginBtn.textContent = 'Login to Register';
+            loginBtn.textContent = 'Login';
 
             btn.remove();
             wrapper.appendChild(loginBtn);
