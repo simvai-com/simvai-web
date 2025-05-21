@@ -967,8 +967,12 @@
                       });
                   },
                   onApprove: function (data) {
+                    const promoCode = promoInput?.value.trim();
+
                     return fetch(`/api/paypal/capture/${data.orderID}`, {
-                      method: 'POST'
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ promoCode })
                     })
                       .then(res => {
                         if (!res.ok) throw new Error('Capture failed');

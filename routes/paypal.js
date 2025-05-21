@@ -25,37 +25,35 @@ router.post('/order', async (req, res) => {
 
 // POST /api/paypal/capture/:orderId
 router.post('/capture/:orderId', async (req, res) => {
-  // ✅ Проверяем, что пользователь авторизован
   const user = req.user;
   if (!user) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
 
+  const { promoCode } = req.body; // ✅ получаем промокод от клиента
+
   try {
     const result = await captureOrder(req.params.orderId);
-
     const purchase = result.purchase_units?.[0]?.payments?.captures?.[0];
 
     if (!purchase) {
       return res.status(400).json({ error: 'Invalid PayPal response' });
     }
 
-    // 💶 Получаем сумму и валюту
     const amount = parseFloat(purchase.amount.value);
     const currency = purchase.amount.currency_code;
     const status = purchase.status;
 
-    // 💾 Сохраняем транзакцию, привязанную к авторизованному пользователю
     const transaction = await prisma.transaction.create({
       data: {
         userId: user.id,
         amount,
         currency,
         status: status.toLowerCase(),
+        promoCode: promoCode || null, // ✅ сохраняем
       },
     });
 
-    // 💌 Отправляем письмо пользователю, если оплата прошла
     if (status === 'COMPLETED') {
       sendPaymentConfirmationEmail({ to: user.email, amount }).catch(console.error);
     }
