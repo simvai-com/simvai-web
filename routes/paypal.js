@@ -23,32 +23,29 @@ router.post('/order', async (req, res) => {
   }
 });
 
-
 // POST /api/paypal/capture/:orderId
 router.post('/capture/:orderId', async (req, res) => {
+  // ✅ Проверяем, что пользователь авторизован
+  const user = req.user;
+  if (!user) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
   try {
     const result = await captureOrder(req.params.orderId);
 
-    const payer = result.payer;
     const purchase = result.purchase_units?.[0]?.payments?.captures?.[0];
 
-    if (!payer || !purchase) {
+    if (!purchase) {
       return res.status(400).json({ error: 'Invalid PayPal response' });
     }
 
-    const email = payer.email_address;
+    // 💶 Получаем сумму и валюту
     const amount = parseFloat(purchase.amount.value);
     const currency = purchase.amount.currency_code;
     const status = purchase.status;
 
-    const user = await prisma.userSimvai.findUnique({
-      where: { email },
-    });
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found in DB' });
-    }
-
+    // 💾 Сохраняем транзакцию, привязанную к авторизованному пользователю
     const transaction = await prisma.transaction.create({
       data: {
         userId: user.id,
@@ -58,8 +55,9 @@ router.post('/capture/:orderId', async (req, res) => {
       },
     });
 
+    // 💌 Отправляем письмо пользователю, если оплата прошла
     if (status === 'COMPLETED') {
-      sendPaymentConfirmationEmail({ to: email, amount }).catch(console.error);
+      sendPaymentConfirmationEmail({ to: user.email, amount }).catch(console.error);
     }
 
     res.json({ success: true, transaction });
