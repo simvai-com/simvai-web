@@ -89,8 +89,8 @@ model Strategy {
   code     String   @unique
   exchange Exchange @default(crypto)
 
-  stocks   Stock[]
-  tokens   Tokens[]
+  stocks Stock[]
+  tokens Tokens[]
 }
 
 model Bot {
@@ -117,7 +117,7 @@ model Stock {
   minLot      Float
   exchange    Exchange @default(crypto)
 
-  deal Deal[]
+  deal       Deal[]
   strategies Strategy[]
 }
 
@@ -126,8 +126,8 @@ model Tokens {
   createdAt DateTime @default(now()) @db.Timestamptz()
   updatedAt DateTime @updatedAt @db.Timestamptz()
 
-  token  String   @unique
-  dateTo DateTime
+  token      String     @unique
+  dateTo     DateTime
   strategies Strategy[]
 }
 
@@ -137,50 +137,49 @@ enum Exchange {
   crypto
 }
 
-
 model test {
-  userId    Int   
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  email      String  @unique
+  email     String   @unique
 }
 
 model UserSimvai {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  name          String?
-  createdAt     DateTime       @default(now())
-  transactions  Transaction[]  @relation("UserTransactions")
+  id           String        @id @default(uuid())
+  email        String        @unique
+  name         String?
+  createdAt    DateTime      @default(now())
+  transactions Transaction[] @relation("UserTransactions")
 }
 
 model Transaction {
-  id          String   @id @default(uuid()) 
-  userId      String
-  amount      Float
-  currency    String   @default("USD")
-  status      String   // e.g., "paid", "pending", "failed"
-  createdAt   DateTime @default(now())
+  id        String   @id @default(uuid())
+  userId    String
+  amount    Float
+  currency  String   @default("USD")
+  status    String // e.g., "paid", "pending", "failed"
+  promoCode String?
+  createdAt DateTime @default(now())
 
-  user        UserSimvai     @relation("UserTransactions", fields: [userId], references: [id])
+  user UserSimvai @relation("UserTransactions", fields: [userId], references: [id])
 }
 
 model AdminUser {
-  id         String      @id @default(uuid())
-  email      String      @unique
-  password   String
-  createdAt  DateTime    @default(now())
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
 
   promoCodes PromoCode[]
 }
 
 model PromoCode {
-  id        String     @id @default(uuid())
-  code      String     @unique
+  id        String   @id @default(uuid())
+  code      String   @unique
   discount  Int
   forWho    String?
-  createdAt DateTime   @default(now())
+  createdAt DateTime @default(now())
 
-  adminId   String
-  admin     AdminUser  @relation(fields: [adminId], references: [id])
+  adminId String
+  admin   AdminUser @relation(fields: [adminId], references: [id])
 }
-
