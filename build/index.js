@@ -1,4 +1,4 @@
-  const express = require('express');
+const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5200;
 
 // Middleware
-app.use(express.json()); // <-- Важно! Иначе req.body будет undefined
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
@@ -16,7 +16,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 дней
   }
 }));
 
@@ -30,9 +30,8 @@ const userRoutes = require('../routes/users');
 const promoRoutes = require('../routes/promo');
 const handleContactForm = require('../assets/javascripts/contact');
 
-
 app.post('/contact', handleContactForm);
-app.use('/api/paypal', paypalRoutes); // ✅ Префикс
+app.use('/api/paypal', paypalRoutes);
 app.use('/api/users', userRoutes);
 app.use(authRoutes);
 app.use('/api', promoRoutes);
@@ -41,6 +40,34 @@ app.use('/api', promoRoutes);
 const rootDir = path.join(__dirname, '..');
 app.use(express.static(path.join(rootDir, 'dist')));
 app.use('/assets', express.static(path.join(rootDir, 'assets')));
+
+// 🔥 Clean URLs для HTML-страниц
+const staticPages = [
+  'about', 'blogs', 'contact', 'faqs', 'page',
+  'portfolio', 'services', 'single-blog', 'single-project',
+  'single-service', 'team'
+];
+
+staticPages.forEach(page => {
+  app.get(`/${page}`, (req, res) => {
+    res.sendFile(path.join(rootDir, 'public', `${page}.html`));
+  });
+});
+
+
+// ✅ Новый маршрут: /event → pricing.html
+app.get('/event', (req, res) => {
+  res.sendFile(path.join(rootDir, 'public', 'pricing.html'));
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(rootDir, 'index.html'));
+});
+
+// ✅ Редирект: /pricing.html → /event
+app.get('/pricing.html', (req, res) => {
+  res.redirect(301, '/event');
+});
 
 // Получить текущего пользователя
 app.get('/user', (req, res) => {
