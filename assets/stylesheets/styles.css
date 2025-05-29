@@ -1458,12 +1458,7 @@ section {
 .team .member img {
   border-radius: 10px;
   overflow: hidden;
-  /* width: 100%; */
-  height: 220px; 
-    width: 200px; 
-  object-fit: cover;
-  object-position: center;
-  border-radius: 12px; 
+ 
 }
 
 .team .member .member-content {
