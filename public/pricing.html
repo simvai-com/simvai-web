@@ -612,7 +612,7 @@
           </div>
         </div><!-- End Team Member -->
 
-        
+
         <div class="col-xl-3 col-md-6 d-flex aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
           <div class="member">
             <img src="assets/images/speakers-form/panterovskiy.JPG" class="img-fluid" alt="">
@@ -651,7 +651,7 @@
             </div>
           </div>
         </div><!-- End Team Member -->
-        
+
         <div class="col-xl-3 col-md-6 d-flex aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
           <div class="member">
             <img src="/assets/images/speakers-form/sedov.JPG" class="img-fluid" alt="">
@@ -1135,110 +1135,103 @@
 
         let selectedPrice = 0;
 
-        // 🟢 Получаем информацию о пользователе
         let isLoggedIn = false;
         try {
           const res = await fetch('/user');
           const data = await res.json();
           isLoggedIn = data.loggedIn;
+
+          // ✅ если есть сохранённый тариф, открываем модалку
+          const pending = localStorage.getItem('pendingPurchase');
+          if (isLoggedIn && pending) {
+            const { price } = JSON.parse(pending);
+            localStorage.removeItem('pendingPurchase');
+            openPurchaseModal(price);
+          }
         } catch (e) {
           console.error('Ошибка при получении статуса логина:', e);
         }
 
+        function openPurchaseModal(price) {
+          selectedPrice = price;
+          modalPrice.textContent = `€${price}`;
+          modalPrice.setAttribute('data-base', price);
+          paypalContainer.innerHTML = '';
+          if (promoStatus) promoStatus.textContent = '';
+          if (successMsg) successMsg.style.display = 'none';
+          if (promoInput) promoInput.value = '';
+          modal.show();
+
+          setTimeout(() => {
+            if (paypal && paypal.Buttons) {
+              paypal.Buttons({
+                createOrder: function () {
+                  const promoCode = promoInput?.value;
+
+                  return fetch('/api/paypal/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ price: selectedPrice, promoCode })
+                  })
+                    .then(res => {
+                      if (!res.ok) {
+                        showPaymentError('Promo code is invalid or expired.');
+                        throw new Error('Promo invalid');
+                      }
+                      return res.json();
+                    })
+                    .then(data => data.order.id)
+                    .catch(() => {
+                      showPaymentError('Error creating payment. Try again later.');
+                    });
+                },
+                onApprove: function (data) {
+                  const promoCode = promoInput?.value.trim();
+
+                  return fetch(`/api/paypal/capture/${data.orderID}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ promoCode })
+                  })
+                    .then(res => {
+                      if (!res.ok) throw new Error('Capture failed');
+                      return res.json();
+                    })
+                    .then(details => {
+                      const content = document.getElementById('modal-body-content');
+                      const successBox = document.getElementById('modal-success');
+                      const planSpan = document.getElementById('success-plan-name');
+                      const priceSpan = document.getElementById('success-amount');
+                      const emailSpan = document.getElementById('success-email');
+
+                      if (content) content.style.display = 'none';
+                      if (successBox) {
+                        planSpan.textContent = 'Registration';
+                        priceSpan.textContent = `€${details.transaction.amount}`;
+                        emailSpan.textContent = details.transaction?.userEmail || 'your email';
+                        successBox.style.display = 'block';
+                      }
+                    })
+                    .catch(() => {
+                      showPaymentError('Something went wrong while confirming payment.');
+                    });
+                }
+              }).render('#modal-paypal-button-container');
+            }
+          }, 200);
+        }
+
         // 🔄 Обрабатываем кнопки оплаты
         document.querySelectorAll('.open-modal-btn').forEach(btn => {
-          const wrapper = btn.closest('.option');
+          const price = parseFloat(btn.getAttribute('data-price'));
 
-          if (!isLoggedIn) {
-            // Отключаем кнопку
-            btn.disabled = true;
-            btn.classList.add('disabled');
-            btn.style.cursor = 'not-allowed';
-
-            // Добавляем кликабельную ссылку на логин
-            const notice = document.createElement('a');
-            notice.href = '/auth/google';
-            notice.className = 'text-danger text-center mt-2 d-block';
-            notice.style.textDecoration = 'underline';
-            notice.style.fontSize = '14px';
-            notice.textContent = 'Please log in to purchase.';
-            wrapper.appendChild(notice);
-
-            return; // не навешивать обработчик
-          }
-
-
-          // Пользователь залогинен — назначаем обработчик покупки
           btn.addEventListener('click', () => {
-            const price = parseFloat(btn.getAttribute('data-price'));
-            selectedPrice = price;
-
-            modalPrice.textContent = `€${price}`;
-            modalPrice.setAttribute('data-base', price);
-            paypalContainer.innerHTML = '';
-            if (promoStatus) promoStatus.textContent = '';
-            if (successMsg) successMsg.style.display = 'none';
-            if (promoInput) promoInput.value = '';
-
-            modal.show();
-
-            setTimeout(() => {
-              if (paypal && paypal.Buttons) {
-                paypal.Buttons({
-                  createOrder: function () {
-                    const promoCode = promoInput?.value;
-
-                    return fetch('/api/paypal/order', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ price: selectedPrice, promoCode })
-                    })
-                      .then(res => {
-                        if (!res.ok) {
-                          showPaymentError('Promo code is invalid or expired.');
-                          throw new Error('Promo invalid');
-                        }
-                        return res.json();
-                      })
-                      .then(data => data.order.id)
-                      .catch(() => {
-                        showPaymentError('Error creating payment. Try again later.');
-                      });
-                  },
-                  onApprove: function (data) {
-                    const promoCode = promoInput?.value.trim();
-
-                    return fetch(`/api/paypal/capture/${data.orderID}`, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ promoCode })
-                    })
-                      .then(res => {
-                        if (!res.ok) throw new Error('Capture failed');
-                        return res.json();
-                      })
-                      .then(details => {
-                        const content = document.getElementById('modal-body-content');
-                        const successBox = document.getElementById('modal-success');
-                        const planSpan = document.getElementById('success-plan-name');
-                        const priceSpan = document.getElementById('success-amount');
-                        const emailSpan = document.getElementById('success-email');
-
-                        if (content) content.style.display = 'none';
-                        if (successBox) {
-                          planSpan.textContent = 'Registration';
-                          priceSpan.textContent = `€${details.transaction.amount}`;
-                          emailSpan.textContent = details.transaction?.userEmail || 'your email';
-                          successBox.style.display = 'block';
-                        }
-                      })
-                      .catch(err => {
-                        showPaymentError('Something went wrong while confirming payment.');
-                      });
-                  }
-                }).render('#modal-paypal-button-container');
-              }
-            }, 200);
+            if (!isLoggedIn) {
+              localStorage.setItem('pendingPurchase', JSON.stringify({ price }));
+              window.location.href = '/auth/google';
+            } else {
+              openPurchaseModal(price);
+            }
           });
         });
 
@@ -1285,6 +1278,7 @@
         }
       });
     </script>
+
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
