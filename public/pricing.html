@@ -774,16 +774,13 @@
                 <div class="price">
                   <h4>Registration</h4>
 
-                  <!-- 💲 Цена и скидка -->
                   <div class="price-box">
-                    <!-- <span class="price-label">Временно:</span> -->
                     <span class="price-current">€30</span>
                     <span class="price-old">€50</span>
                   </div>
 
                 </div>
 
-                <!-- ⏳ Таймер -->
                 <div class="pulse-timer" id="pulse-timer">
                   ⏳ <span id="pulse-time">30д 05:33:45</span>
                 </div>
@@ -1325,22 +1322,30 @@
       });
     </script>
 
-
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const deadline = new Date("2025-06-15T00:00:00").getTime();
+        const deadline = new Date("2025-06-19T00:00:00").getTime();
         const label = document.getElementById("pulse-time");
         const box = document.getElementById("pulse-timer");
+
+        const priceCurrent = document.querySelector('.price-current');
+        const priceOld = document.querySelector('.price-old');
 
         function updatePulseTimer() {
           const now = Date.now();
           const left = deadline - now;
 
           if (left <= 0) {
-            label.textContent = "⛔ Time is up";
-            box.style.backgroundColor = "#eee";
-            box.style.color = "#666";
-            box.style.animation = "none";
+            if (box) box.remove();
+
+            if (priceCurrent) priceCurrent.remove();
+
+            if (priceOld) {
+              priceOld.textContent = '€50';
+              priceOld.classList.remove('price-old');
+              priceOld.classList.add('price-current');
+            }
+
             return;
           }
 
@@ -1354,9 +1359,10 @@
 
         updatePulseTimer();
         setInterval(updatePulseTimer, 1000);
-
       });
     </script>
+
+
     <script>
       document.getElementById('ajax-contact').addEventListener('submit', async function (e) {
         e.preventDefault();
