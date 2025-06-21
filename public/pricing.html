@@ -799,12 +799,11 @@
             <div class="col-sm-6 col-md-6 col-lg-4">
               <div class="card text-center h-100 position-relative">
 
-                <!-- Заголовок -->
                 <div class="price">
                   <h4>Registration</h4>
 
                   <div class="price-box">
-                    <span class="price-current">€30</span>
+                    <span class="price-current">€50</span>
                     <span class="price-old">€50</span>
                   </div>
 
@@ -821,9 +820,8 @@
                     <li><i class="bi bi-check-circle"></i> Networking</li>
                   </ul>
 
-                  <button class="btn btn-danger mt-auto open-modal-btn" data-price="30">Purchase</button>
+                  <button class="btn btn-danger mt-auto open-modal-btn" data-price="50">Purchase</button>
 
-                  <!-- 🎉 Успешная оплата -->
                   <div id="login-message" style="color: red;"></div>
                   <div id="payment-success-message" style="display: none; text-align: center; margin-top: 30px;">
                     <div style="background: #D80027; color: white; padding: 20px; border-radius: 10px;">
@@ -840,13 +838,10 @@
             <div class="col-sm-6 col-md-6 col-lg-4">
               <div class="card text-center h-100 position-relative">
 
-                <!-- Заголовок -->
                 <div class="price">
                   <h4>Registration</h4>
 
-                  <!-- 💲 Цена и скидка -->
                   <div class="price-box">
-                    <!-- <span class="price-label">Временно:</span> -->
                     <span class="price-current">€75</span>
                   </div>
 
@@ -865,7 +860,6 @@
 
 
 
-                  <!-- <div id="paypal-button-container" class="mt-4"></div> -->
                   <div id="login-message" style="color: red;"></div>
                   <div id="payment-success-message" style="display: none; text-align: center; margin-top: 30px;">
                     <div style="background: #D80027; color: white; padding: 20px; border-radius: 10px;">
@@ -891,7 +885,6 @@
             </div>
 
             <div class="modal-body">
-              <!-- 🟡 Основной блок: цена, промокод, PayPal -->
               <div id="modal-body-content">
                 <p>Ticket price: <strong id="modal-price" data-base="0">€0</strong></p>
 
@@ -907,7 +900,6 @@
                 <div id="modal-paypal-button-container" class="mb-3"></div>
               </div>
 
-              <!-- ✅ Успешная оплата -->
               <div id="modal-success" style="display: none;">
                 <div style="background: #e7f8ed; border-left: 5px solid #3cb371; padding: 20px; border-radius: 6px;">
                   <h5 style="color: #2e7d32;">✅ Payment Successful</h5>
@@ -920,7 +912,6 @@
                 </div>
               </div>
 
-              <!-- ❌ Ошибка оплаты -->
               <div id="modal-error" style="display: none;">
                 <div style="background: #fdecea; border-left: 5px solid #d32f2f; padding: 20px; border-radius: 6px;">
                   <h5 style="color: #d32f2f;">❌ Payment Failed</h5>
@@ -1213,7 +1204,6 @@
           const data = await res.json();
           isLoggedIn = data.loggedIn;
 
-          // ✅ если есть сохранённый тариф, открываем модалку
           const pending = localStorage.getItem('pendingPurchase');
           if (isLoggedIn && pending) {
             const { price } = JSON.parse(pending);
@@ -1293,7 +1283,6 @@
           }, 200);
         }
 
-        // 🔄 Обрабатываем кнопки оплаты
         document.querySelectorAll('.open-modal-btn').forEach(btn => {
           const price = parseFloat(btn.getAttribute('data-price'));
 
@@ -1307,7 +1296,6 @@
           });
         });
 
-        // Промо-код
         if (applyPromoBtn) {
           applyPromoBtn.addEventListener('click', async () => {
             const code = promoInput?.value.trim();
